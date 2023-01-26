@@ -11,7 +11,6 @@ public class StudentController {
 
     StudentService studentService;
 
-
     //Get the information
     @GetMapping("/getStudent")
     public Student getStudent(@RequestParam("q") int admnNo){
@@ -43,26 +42,16 @@ public class StudentController {
 
     @DeleteMapping("/deleteStudent")
     public String deleteStudent(@RequestParam("q") int admnNo){
-        if(!db.containsKey(admnNo)){
-            return "Student info not present!, Please recheck the admission number";
-        } else{
-            db.remove(admnNo);
-        }
-        return "Student info deleted!";
+        return studentService.deleteStudent(admnNo);
     }
-
 
 
     //Put based on admn number and update one parameter
 
     @PutMapping("/updateStudent")
     public String updateStudent(@RequestParam("id")int id, @RequestParam ("age") int age){
-        if(!db.containsKey(id)){
-            return "Student not present";
-        }
-        db.get(id).setAge(age);
 
-        return "Updated Successfully";
+        return studentService.updateStudent(id,age);
     }
 
 
