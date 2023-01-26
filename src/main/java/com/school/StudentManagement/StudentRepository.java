@@ -25,7 +25,7 @@ public class StudentRepository {
 
     public String deleteStudent(int admnNo){
         if(!db.containsKey(admnNo)){
-            return "Student info not present!, Please recheck the admission number";
+            return "Invalid";
         } else{
             db.remove(admnNo);
         }
@@ -35,7 +35,7 @@ public class StudentRepository {
 
     public String updateStudent(int id, int age){
         if(!db.containsKey(id)){
-            return "Student not present";
+            return null;
         }
         db.get(id).setAge(age);
         return "Updated Successfully";
